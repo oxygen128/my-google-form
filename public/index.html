@@ -25,6 +25,7 @@
             e.preventDefault();
             const status = document.getElementById('status');
             status.innerText = "Mengirim...";
+            status.style.color = "black"; // Reset warna
 
             const formData = {
                 nama: document.getElementById('nama').value,
@@ -38,15 +39,23 @@
                     body: JSON.stringify(formData)
                 });
 
+                // Kita ambil pesan error dari backend jika ada
+                const result = await response.json();
+
                 if (response.ok) {
-                    status.innerText = "Berhasil terkirim!";
+                    status.innerText = "Berhasil: " + result.message;
+                    status.style.color = "green";
                     document.getElementById('myForm').reset();
                 } else {
-                    status.innerText = "Gagal mengirim. Coba lagi.";
+                    // Tampilkan pesan error spesifik dari server (misal: Sheet not found)
+                    status.innerText = "Gagal: " + (result.error || result.message);
+                    status.style.color = "red";
+                    console.error("Detail Error:", result);
                 }
             } catch (error) {
                 console.error(error);
-                status.innerText = "Terjadi kesalahan koneksi.";
+                status.innerText = "Error Jaringan/Koneksi: " + error.message;
+                status.style.color = "red";
             }
         });
     </script>
