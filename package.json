@@ -1,0 +1,19 @@
+{
+  "name": "google-form-netlify",
+  "version": "1.0.0",
+  "description": "Backend form menggunakan Google Sheets API di Netlify",
+  "main": "functions/submit.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "netlify",
+    "google-sheets",
+    "form"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "googleapis": "^140.0.0"
+  }
+}
